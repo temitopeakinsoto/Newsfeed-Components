@@ -136,8 +136,10 @@ function articleMaker(articleData) {
   span.classList.add('expandButton');
   div.appendChild(span);
 
+  div.classList.add('article-open');
+
   span.addEventListener('click', e => {
-    div.classList.toggle('hidden');
+    div.classList.toggle('article-open');
   });
 
   // add data to the tags
@@ -146,12 +148,13 @@ function articleMaker(articleData) {
   paragraphs[0].textContent = articleData.firstParagraph;
   paragraphs[1].textContent = articleData.secondParagraph;
   paragraphs[2].textContent = articleData.thirdParagraph;
+  span.textContent = 'TOGGLE';
 
   console.log(div);
 
   return div;
 }
-articleMaker(  {
+const atticle = articleMaker({
   title: 'Professional Software Development in 2019',
   date: 'Jan 1st, 2019',
   firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
@@ -166,4 +169,25 @@ articleMaker(  {
   thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
         Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
         Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+});
+
+data.push({
+  title: "Hello There",
+  date: '04 september, 2019',
+  firstParagraph: `Adventure webdesign pretty design design, excursion cute WordPress blogger design webdesign adventure. 
+  Pretty simple traveling fun WordPress wanderlust darn simple organized. Expedition colorful design simple excursion blogger 
+  blogger design WordPress design, design organized website theme.`,
+  secondParagraph: `Adventure webdesign pretty design design, excursion cute WordPress blogger design webdesign adventure. 
+  Pretty simple traveling fun WordPress wanderlust darn simple organized. Expedition colorful design simple excursion blogger 
+  blogger design WordPress design, design organized website theme.`,
+  thirdParagraph: `Adventure webdesign pretty design design, excursion cute WordPress blogger design webdesign adventure. 
+  Pretty simple traveling fun WordPress wanderlust darn simple organized. Expedition colorful design simple excursion blogger 
+  blogger design WordPress design, design organized website theme.`
+});
+
+const articles = data.map(articleMaker);
+const articlesContainer = document.querySelector('.articles');
+
+articles.forEach((element, index) => {
+  articlesContainer.appendChild(element);  
 });
