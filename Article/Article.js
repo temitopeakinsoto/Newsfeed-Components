@@ -150,8 +150,6 @@ function articleMaker(articleData) {
   paragraphs[2].textContent = articleData.thirdParagraph;
   span.textContent = 'TOGGLE';
 
-  console.log(div);
-
   return div;
 }
 const atticle = articleMaker({
