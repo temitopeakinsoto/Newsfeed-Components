@@ -114,24 +114,56 @@ const data = [
 */
 
 function articleMaker(articleData) {
-  const article = document.createElement('div');
-  article.classList.add('article');
+  const div = document.createElement('div');
+  div.classList.add('article');
+
   const h2 = document.createElement('h2');
-  
-  for (let i=1; i <= 4; i++) {
-    const p = document.createElement('p');    
-    article.appendChild(p);
-    if (i === 1){
-      p.classList.add('date');
-    }
+  div.appendChild(h2);
+
+  const p1 = document.createElement('p');
+  p1.classList.add('date');
+  div.appendChild(p1);
+
+  const paragraphs = [];
+  for (let i=1; i <= 3; i++) {    
+    const p = document.createElement('p');       
+    div.appendChild(p);
+    paragraphs.push(p); 
+    
   }
 
   const span = document.createElement('span');
   span.classList.add('expandButton');
-  article.appendChild(span);
+  div.appendChild(span);
 
-  console.log(article);
+  span.addEventListener('click', e => {
+    div.classList.toggle('hidden');
+  });
 
-  //return article;
+  // add data to the tags
+  h2.textContent = articleData.title;
+  p1.textContent = articleData.date;
+  paragraphs[0].textContent = articleData.firstParagraph;
+  paragraphs[1].textContent = articleData.secondParagraph;
+  paragraphs[2].textContent = articleData.thirdParagraph;
+
+  console.log(div);
+
+  return div;
 }
-articleMaker({});
+articleMaker(  {
+  title: 'Professional Software Development in 2019',
+  date: 'Jan 1st, 2019',
+  firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+        hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+        Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+  secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+        hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+        hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+        hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+  thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+        Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+        Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+});
