@@ -112,3 +112,26 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function articleMaker(articleData) {
+  const article = document.createElement('div');
+  article.classList.add('article');
+  const h2 = document.createElement('h2');
+  
+  for (let i=1; i <= 4; i++) {
+    const p = document.createElement('p');    
+    article.appendChild(p);
+    if (i === 1){
+      p.classList.add('date');
+    }
+  }
+
+  const span = document.createElement('span');
+  span.classList.add('expandButton');
+  article.appendChild(span);
+
+  console.log(article);
+
+  //return article;
+}
+articleMaker({});
