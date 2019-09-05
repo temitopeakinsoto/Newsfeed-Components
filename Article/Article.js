@@ -112,3 +112,65 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function articleMaker(articleData) {
+  const div = document.createElement('div');
+  div.classList.add('article');
+
+  const h2 = document.createElement('h2');
+  div.appendChild(h2);
+
+  const p1 = document.createElement('p');
+  p1.classList.add('date');
+  div.appendChild(p1);
+
+  const paragraphs = [];
+  for (let i=1; i <= 3; i++) {    
+    const p = document.createElement('p');       
+    div.appendChild(p);
+    paragraphs.push(p); 
+    
+  }
+
+  const span = document.createElement('span');
+  span.classList.add('expandButton');
+  div.appendChild(span);
+
+  div.classList.add('article-open');
+
+  span.addEventListener('click', e => {
+    div.classList.toggle('article-open');
+  });
+
+  // add data to the tags
+  h2.textContent = articleData.title;
+  p1.textContent = articleData.date;
+  paragraphs[0].textContent = articleData.firstParagraph;
+  paragraphs[1].textContent = articleData.secondParagraph;
+  paragraphs[2].textContent = articleData.thirdParagraph;
+  span.textContent = 'TOGGLE';
+
+  return div;
+}
+const atticle = articleMaker(data);
+
+data.push({
+  title: "Hello There",
+  date: '04 september, 2019',
+  firstParagraph: `Adventure webdesign pretty design design, excursion cute WordPress blogger design webdesign adventure. 
+  Pretty simple traveling fun WordPress wanderlust darn simple organized. Expedition colorful design simple excursion blogger 
+  blogger design WordPress design, design organized website theme.`,
+  secondParagraph: `Adventure webdesign pretty design design, excursion cute WordPress blogger design webdesign adventure. 
+  Pretty simple traveling fun WordPress wanderlust darn simple organized. Expedition colorful design simple excursion blogger 
+  blogger design WordPress design, design organized website theme.`,
+  thirdParagraph: `Adventure webdesign pretty design design, excursion cute WordPress blogger design webdesign adventure. 
+  Pretty simple traveling fun WordPress wanderlust darn simple organized. Expedition colorful design simple excursion blogger 
+  blogger design WordPress design, design organized website theme.`
+});
+
+const articles = data.map(articleMaker);
+const articlesContainer = document.querySelector('.articles');
+
+articles.forEach((element, index) => {
+  articlesContainer.appendChild(element);  
+});
